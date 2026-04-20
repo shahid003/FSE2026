@@ -8,6 +8,12 @@ jobs:
 
     steps:
       - name: Print message
-        run: echo "hello, Github Actions"
-      - name: Shahid
-        run: echo "bye, Github Actions"  
+        run: echo "hello, Github Actions" 
+  
+  say-bye:
+    needs: say-hello
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print message
+        run: echo "BYE, Github Actions"
