@@ -35,4 +35,11 @@ jobs:
 
       - name: list file
         run: ls
+        
+      - name: install dependency
+        run: npm install
+
+      - name: running test
+        run: run test
+        
  
