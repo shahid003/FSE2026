@@ -1,19 +1,38 @@
-name: My First Workflow
+# name: My First Workflow
+
+# on: push
+
+# jobs:
+#   say-hello:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Print message
+#         run: echo "hello, Github Actions" 
+  
+#   say-bye:
+#     needs: say-hello
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Print message
+#         run: echo "BYE, Github Actions"
+
+name: use action workflow
 
 on: push
 
 jobs:
-  say-hello:
+  test:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Print message
-        run: echo "hello, Github Actions" 
-  
-  say-bye:
-    needs: say-hello
-    runs-on: ubuntu-latest
+      - name: checkout code
+        uses: actions/checkout@v4
 
-    steps:
-      - name: Print message
-        run: echo "BYE, Github Actions"
+      - name: setup node
+        uses: actions/setup-node@v4
+
+      - name: list file
+        run: ls
+ 
