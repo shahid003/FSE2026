@@ -124,6 +124,7 @@ jobs:
           path: file.txt
   
   job2:
+    needs: job1
     runs-on: ubuntu-latest
     steps: 
       - name: download a file
