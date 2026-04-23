@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo test success"
+    "test": "echo \"test passed\"",
+    "lint": "npx eslint .",
+    "build": "echo \"No build step required\"",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

@@ -18,28 +18,106 @@
 #       - name: Print message
 #         run: echo "BYE, Github Actions"
 
-name: use action workflow
+# name: use action workflow
+
+# on: push
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#       - name: checkout code
+#         uses: actions/checkout@v4
+
+#       - name: setup node
+#         uses: actions/setup-node@v4
+
+#       - name: list file
+#         run: ls
+
+#       - name: install dependency
+#         run: npm install
+
+#       - name: running test
+#         run: npm run test
+        
+name: Clone repo workflow
 
 on: push
 
 jobs:
-  test:
+
+  lint:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: list file
-        run: ls
-
-      - name: install dependency
+      - name: Install dependencies
         run: npm install
 
-      - name: running test
+      - name: Run lint
+        run: npm run lint
+
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
         run: npm run test
-        
- 
+
+
+  deploy-app:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server
+        run: node server.js
+
