@@ -23,7 +23,9 @@
   "homepage": "https://github.com/shahid003/FSE2026#readme",
   "dependencies": {
     "body-parser": "^2.2.2",
-    "eslint": "^10.2.1",
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^10.2.1"
   }
 }
