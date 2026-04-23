@@ -133,4 +133,4 @@ jobs:
           name: my-file
       
       - name: read a file
-        uses: cat file.txt
+        uses: cat file
